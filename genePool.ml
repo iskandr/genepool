@@ -66,13 +66,13 @@ open Internal
 		stop      - optional stopping predicate
 *)
 type ('genome, 'fitness) ga_spec = {
-		evaluate : 'genome -> 'fitness;
-		mutate : 'genome -> 'genome;
-		crossover : ('genome * 'genome) -> 'genome;
-		genRandom: unit -> 'genome;
-		seed: 'genome array option;
-		report: (int -> 'genome -> 'fitness -> unit) option; 
-		stop : (int -> 'genome -> 'fitness -> bool) option
+	evaluate : 'genome -> 'fitness;
+	mutate : 'genome -> 'genome;
+	crossover : ('genome * 'genome) -> 'genome;
+	genRandom: unit -> 'genome;
+	seed: 'genome array option;
+	report: (int -> 'genome -> 'fitness -> unit) option; 
+	stop : (int -> 'genome -> 'fitness -> bool) option
 }
 
 (*
