@@ -1,11 +1,13 @@
 GenePool is a framework for writing evolutionary optimization algorithms in OCaml. This library is not a complete solution but rather is a generic skeleton which takes care of the plumbing and nuisances of optimization. You provide GenePool with functions that give meaning to fitness and reproduction and after a specified number of generation, GenePool returns an array of the best "genomes" it evolved. 
 
 The interface to GenePool is extremely simple. It consists of a single function evolve whose type is:
+```ocaml
     ('genome, 'fitness) ga_spec -> ga_params -> 'genome array * 'fitness
-
+```
 As you can tell from the signature, GenePool is polymorphic over both the representation of the genome and the type of fitness values. Typically your genome will be an array and fitness will be expressed as either an int or float. However, nothing stops you from using different types if your problem requires them.
 The first parameter is a record (of type ga_spec) which encodes how evolution will proceed for your specific problem.
 
+```ocaml
 (*
 	GA Specification
 	-----------------------------------------------------------------------
@@ -28,9 +30,12 @@ The first parameter is a record (of type ga_spec) which encodes how evolution wi
 	report: (int -> 'genome -> 'fitness -> unit) option;
 	stop: (int > 'genome -> 'fitness -> bool) option
     }
+```
 
 Some parameters (ie, the maximum number of generations, the number of genomes which survive each generations, etc...) are universal across all optimization algorithms. These are provided in another record, whose type is ga_params.
 
+
+```ocaml 
 (*
 	GA Parameters
 	--------------------------------------------------------------------
@@ -50,3 +55,5 @@ Some parameters (ie, the maximum number of generations, the number of genomes wh
 	timeLimit:float;
 	maxGen: int
     }
+
+```
