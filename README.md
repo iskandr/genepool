@@ -21,15 +21,15 @@ The first parameter is a record (of type ga_spec) which encodes how evolution wi
 		stop      - optional stopping predicate
 *)
 
-    type ('genome, 'fitness) ga_spec = {
-	evaluate : 'genome -> 'fitness;
-	mutate : 'genome -> 'genome;
-	crossover : 'genome * 'genome -> 'genome;
-	genRandom: unit -> 'genome;
-	seed: 'genome array option;
-	report: (int -> 'genome -> 'fitness -> unit) option;
-	stop: (int > 'genome -> 'fitness -> bool) option
-    }
+type ('genome, 'fitness) ga_spec = {
+  evaluate : 'genome -> 'fitness;
+  mutate : 'genome -> 'genome;
+  crossover : 'genome * 'genome -> 'genome;
+  genRandom: unit -> 'genome;
+  seed: 'genome array option;
+  report: (int -> 'genome -> 'fitness -> unit) option;
+  stop: (int > 'genome -> 'fitness -> bool) option
+}
 ```
 
 Some parameters (ie, the maximum number of generations, the number of genomes which survive each generations, etc...) are universal across all optimization algorithms. These are provided in another record, whose type is ga_params.
@@ -47,13 +47,13 @@ Some parameters (ie, the maximum number of generations, the number of genomes wh
 	maxGen - maximum number of generations until algorithm termination 
 *)
 
-    type ga_params = {
-	nRandom: int;
-	nSurvivors: int;
-	nMutations: int;
-	nCrossovers: int;
-	timeLimit:float;
-	maxGen: int
-    }
+type ga_params = {
+  nRandom: int;
+  nSurvivors: int;
+  nMutations: int;
+  nCrossovers: int;
+  timeLimit:float;
+  maxGen: int
+}
 
 ```
